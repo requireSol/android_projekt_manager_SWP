@@ -1,0 +1,166 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: Utils</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.praktikum.spapp.common</a> ]
+</div>
+
+<h1>Coverage Summary for Class: Utils (com.praktikum.spapp.common)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Utils</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    83,3%
+  </span>
+  <span class="absValue">
+    (5/ 6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    88,9%
+  </span>
+  <span class="absValue">
+    (16/ 18)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.praktikum.spapp.common;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.google.gson.JsonElement;
+<i>4</i>&nbsp;import com.google.gson.JsonObject;
+<i>5</i>&nbsp;import com.google.gson.JsonParser;
+<i>6</i>&nbsp;import com.praktikum.spapp.service.internal.AuthenticationServiceImpl;
+<i>7</i>&nbsp;
+<i>8</i>&nbsp;import java.io.IOException;
+<i>9</i>&nbsp;import java.util.regex.Matcher;
+<i>10</i>&nbsp;import java.util.regex.Pattern;
+<i>11</i>&nbsp;
+<b class="nc"><i>12</i>&nbsp;public class Utils {</b>
+<i>13</i>&nbsp;
+<i>14</i>&nbsp;    // parse a string to check if the response is a json with a &#39;success&#39; key and which value it has
+<i>15</i>&nbsp;//    public static boolean silentTokenRefresh(String responseString) throws Exception {
+<i>16</i>&nbsp;//
+<i>17</i>&nbsp;//        // create a parser instance
+<i>18</i>&nbsp;//        JsonParser parser = new JsonParser();
+<i>19</i>&nbsp;//        // string to jsonelement, then
+<i>20</i>&nbsp;//        JsonElement element = parser.parse(responseString);
+<i>21</i>&nbsp;//        System.out.println(responseString);
+<i>22</i>&nbsp;//
+<i>23</i>&nbsp;//        // jsonelement to jsonobject
+<i>24</i>&nbsp;//        JsonObject resultAsJsonObject = element.getAsJsonObject();
+<i>25</i>&nbsp;//        // finally jsonobject can use .get method and check success
+<i>26</i>&nbsp;//
+<i>27</i>&nbsp;//        try {
+<i>28</i>&nbsp;//            String status = resultAsJsonObject.get(&quot;status&quot;).getAsString();
+<i>29</i>&nbsp;//            switch (status) {
+<i>30</i>&nbsp;//
+<i>31</i>&nbsp;//                case &quot;401&quot;:
+<i>32</i>&nbsp;//                    AuthenticationServiceImpl.loginOnServer(AuthenticationServiceImpl.getSession().getCurrentUser().getUsername(), AuthenticationServiceImpl.getSession().getPassword());
+<i>33</i>&nbsp;//                    return true;
+<i>34</i>&nbsp;//
+<i>35</i>&nbsp;//                case &quot;403&quot;:
+<i>36</i>&nbsp;//            }
+<i>37</i>&nbsp;//        } catch (NullPointerException | IOException e) {
+<i>38</i>&nbsp;//            //do nothing
+<i>39</i>&nbsp;//        }
+<i>40</i>&nbsp;//        String isSuccess = resultAsJsonObject.get(&quot;success&quot;).getAsString();
+<i>41</i>&nbsp;//
+<i>42</i>&nbsp;//        return false;
+<i>43</i>&nbsp;//    }
+<i>44</i>&nbsp;
+<i>45</i>&nbsp;    public static String parseForJsonObject(String responseString, String jsonObject) {
+<b class="fc"><i>46</i>&nbsp;        JsonParser parser = new JsonParser();</b>
+<b class="fc"><i>47</i>&nbsp;        JsonElement element = parser.parse(responseString);</b>
+<b class="fc"><i>48</i>&nbsp;        JsonObject resultAsJsonObject = element.getAsJsonObject();</b>
+<b class="fc"><i>49</i>&nbsp;        JsonElement bElement = resultAsJsonObject.get(jsonObject);</b>
+<b class="fc"><i>50</i>&nbsp;        if (bElement.isJsonArray()) {</b>
+<b class="fc"><i>51</i>&nbsp;            return bElement.toString();</b>
+<i>52</i>&nbsp;        } else {
+<i>53</i>&nbsp;            try {
+<b class="fc"><i>54</i>&nbsp;                return bElement.getAsString();</b>
+<b class="fc"><i>55</i>&nbsp;            } catch (UnsupportedOperationException e) {</b>
+<b class="fc"><i>56</i>&nbsp;                return bElement.toString();</b>
+<i>57</i>&nbsp;            }
+<i>58</i>&nbsp;        }
+<i>59</i>&nbsp;    }
+<i>60</i>&nbsp;
+<i>61</i>&nbsp;    public static boolean isSuccess(String responseString) {
+<i>62</i>&nbsp;
+<b class="fc"><i>63</i>&nbsp;        String isSuccess = parseForJsonObject(responseString, &quot;success&quot;);</b>
+<b class="pc"><i>64</i>&nbsp;        if (isSuccess.contains(&quot;1&quot;)) {</b>
+<b class="fc"><i>65</i>&nbsp;            return true;</b>
+<i>66</i>&nbsp;        } else {
+<b class="nc"><i>67</i>&nbsp;            return false;</b>
+<i>68</i>&nbsp;        }
+<i>69</i>&nbsp;    }
+<i>70</i>&nbsp;
+<i>71</i>&nbsp;    public static final Pattern VALID_EMAIL_ADDRESS_REGEX =
+<b class="fc"><i>72</i>&nbsp;            Pattern.compile(&quot;^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$&quot;, Pattern.CASE_INSENSITIVE);</b>
+<i>73</i>&nbsp;
+<i>74</i>&nbsp;    public static boolean validate(String emailStr) {
+<b class="fc"><i>75</i>&nbsp;        Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(emailStr);</b>
+<b class="fc"><i>76</i>&nbsp;        return matcher.find();</b>
+<i>77</i>&nbsp;    }
+<i>78</i>&nbsp;
+<i>79</i>&nbsp;    public static boolean isEmail(String string) {
+<b class="fc"><i>80</i>&nbsp;        return Utils.validate(string);</b>
+<i>81</i>&nbsp;    }
+<i>82</i>&nbsp;
+<i>83</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-07-20 14:54</div>
+</div>
+</body>
+</html>

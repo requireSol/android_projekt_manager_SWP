@@ -1,0 +1,54 @@
+<resources>
+    <string name="app_name">SPApp</string>
+    <string name="field_name">admin</string>
+    <string name="field_password">admin</string>
+    <string name="button_sign_up">Sign Up</string>
+    <string name="button_login">Login</string>
+    <string name="text_refuse">Incorrect username or password</string>
+    <string name="button_try_again">Enter Code</string>
+    <string name="enter_code">Enter code</string>
+    <string name="join">Join</string>
+    <string name="title_activity_invite_user">inviteUser</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="title_activity_confirm">ConfirmActivity</string>
+    <string name="click_with_invite">
+        <u>Got an Invite? Click here!</u>
+    </string>
+    <string name="no" />
+    <string name="yes" />
+
+    <string-array name="project_status_array">
+        <item>NONE</item>
+        <item>APPLICATION STAGE</item>
+        <item>REGISTERED</item>
+        <item>EVALUATED</item>
+        <item>FINISHED</item>
+    </string-array>
+
+    <string-array name="project_type_array">
+        <item>NONE</item>
+        <item>FOPRA</item>
+        <item>SEMINARARBEIT</item>
+        <item>BACHELORARBEIT</item>
+        <item>MASTERARBEIT</item>
+        <item>PROJEKTARBEIT</item>
+        <item>SWA</item>
+    </string-array>
+
+    <string-array name="appointment_types">
+        <item>None</item>
+        <item>Deadline</item>
+        <item>Meeting</item>
+        <item>Group</item>
+        <item>Template</item>
+    </string-array>
+
+
+</resources>

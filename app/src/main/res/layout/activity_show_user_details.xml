@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".activity.user.ShowUserDetailsActivity">
+
+    <Button
+            android:text="SAVE"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/button_edit_user_save"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintTop_toTopOf="parent"
+            android:visibility="gone"/>
+    <Button
+            android:text="EDIT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/button_edit_user_and_cancel"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="@+id/tableLayout"
+            app:layout_constraintEnd_toStartOf="@+id/button_edit_user_save"/>
+    <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:stretchColumns="1" android:id="@+id/tableLayout" tools:layout_editor_absoluteY="0dp"
+            tools:layout_editor_absoluteX="-101dp">
+
+        <TableRow>
+            <TextView
+                    android:text="Username"
+                    android:padding="3dip"/>
+            <EditText
+                    android:id="@+id/et_username"
+                    android:text="Username"
+                    android:padding="3dip" android:layout_height="60dp"
+                    android:enabled="false"/>
+
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                    android:id="@+id/email"
+                    android:text="Email"
+                    android:padding="3dip" android:layout_height="match_parent"/>
+            <EditText
+                    android:id="@+id/et_email"
+                    android:padding="3dip" android:layout_height="match_parent"
+                    android:enabled="false"/>
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                    android:text="Rolle"
+                    android:padding="3dip"/>
+            <EditText
+                    android:id="@+id/et_role"
+                    android:text="Rolle"
+                    android:padding="3dip" android:layout_height="match_parent"
+                    android:enabled="false"/>
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                    android:text="Vorname"
+                    android:padding="3dip"/>
+            <EditText
+                    android:id="@+id/et_first_name"
+                    android:text="Vorname"
+                    android:padding="3dip"
+                    android:enabled="false"/>
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                    android:text="Nachname"
+                    android:padding="3dip"/>
+            <EditText
+                    android:id="@+id/et_last_name"
+                    android:text="Nachname"
+                    android:padding="3dip"
+                    android:enabled="false"/>
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                    android:text="Matrikelnummer"
+                    android:padding="3dip"/>
+            <EditText
+                    android:id="@+id/et_student_number"
+                    android:text="Matrikelnummer"
+                    android:padding="3dip" android:enabled="false"/>
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                    android:text="Studiengang"
+                    android:padding="3dip"/>
+            <EditText
+                    android:id="@+id/et_course"
+                    android:text="Studiengang"
+                    android:padding="3dip"
+                    android:enabled="false"/>
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                    android:text="Prüfungsordnung"
+                    android:padding="3dip"/>
+            <EditText
+                    android:id="@+id/et_ex_regulations"
+                    android:text="Pruefungsordnung"
+                    android:padding="3dip"
+                    android:enabled="false"/>
+        </TableRow>
+
+
+    </TableLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

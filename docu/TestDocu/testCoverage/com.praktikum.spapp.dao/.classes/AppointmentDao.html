@@ -1,0 +1,66 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: AppointmentDao</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.praktikum.spapp.dao</a> ]
+</div>
+
+<h1>Coverage Summary for Class: AppointmentDao (com.praktikum.spapp.dao)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+</tr>
+<tr>
+  <td class="name">AppointmentDao</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.praktikum.spapp.dao;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.google.gson.JsonObject;
+<i>4</i>&nbsp;import com.praktikum.spapp.exception.ResponseException;
+<i>5</i>&nbsp;import com.praktikum.spapp.models.Appointment;
+<i>6</i>&nbsp;
+<i>7</i>&nbsp;import java.util.ArrayList;
+<i>8</i>&nbsp;
+<i>9</i>&nbsp;public interface AppointmentDao {
+<i>10</i>&nbsp;
+<i>11</i>&nbsp;    Appointment createAppointment(Appointment appointment, Long projectId) throws ResponseException;
+<i>12</i>&nbsp;
+<i>13</i>&nbsp;    ArrayList&lt;Appointment&gt; fetchAppointments(Long projectId) throws ResponseException;
+<i>14</i>&nbsp;
+<i>15</i>&nbsp;    Appointment updateAppointment(JsonObject data, Long projectId) throws ResponseException;
+<i>16</i>&nbsp;
+<i>17</i>&nbsp;    void deleteAppointment(Long projectId) throws ResponseException;
+<i>18</i>&nbsp;
+<i>19</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-07-20 14:53</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,103 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: AuthenticationServiceImpl</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.praktikum.spapp.service.internal</a> ]
+</div>
+
+<h1>Coverage Summary for Class: AuthenticationServiceImpl (com.praktikum.spapp.service.internal)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">AuthenticationServiceImpl</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/ 3)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.praktikum.spapp.service.internal;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.praktikum.spapp.common.SessionManager;
+<i>4</i>&nbsp;import com.praktikum.spapp.dao.AuthenticationDao;
+<i>5</i>&nbsp;import com.praktikum.spapp.dao.internal.AuthenticationDaoImpl;
+<i>6</i>&nbsp;import com.praktikum.spapp.exception.ResponseException;
+<i>7</i>&nbsp;import com.praktikum.spapp.service.AuthenticationService;
+<i>8</i>&nbsp;
+<i>9</i>&nbsp;public class AuthenticationServiceImpl extends Service implements AuthenticationService {
+<i>10</i>&nbsp;
+<i>11</i>&nbsp;    AuthenticationDao dao;
+<i>12</i>&nbsp;
+<b class="fc"><i>13</i>&nbsp;    public AuthenticationServiceImpl() {</b>
+<b class="fc"><i>14</i>&nbsp;        dao = new AuthenticationDaoImpl();</b>
+<i>15</i>&nbsp;    }
+<i>16</i>&nbsp;
+<i>17</i>&nbsp;    public void logonServer(String nameOrEmail, String password) throws ResponseException {
+<b class="fc"><i>18</i>&nbsp;        SessionManager.createSession(dao.logon(nameOrEmail, password));</b>
+<i>19</i>&nbsp;    }
+<i>20</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-07-20 14:53</div>
+</div>
+</body>
+</html>

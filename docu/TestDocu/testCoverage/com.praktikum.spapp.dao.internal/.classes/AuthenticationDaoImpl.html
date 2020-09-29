@@ -1,0 +1,150 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: AuthenticationDaoImpl</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.praktikum.spapp.dao.internal</a> ]
+</div>
+
+<h1>Coverage Summary for Class: AuthenticationDaoImpl (com.praktikum.spapp.dao.internal)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">AuthenticationDaoImpl</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    86,4%
+  </span>
+  <span class="absValue">
+    (19/ 22)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.praktikum.spapp.dao.internal;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.google.gson.Gson;
+<i>4</i>&nbsp;import com.google.gson.GsonBuilder;
+<i>5</i>&nbsp;import com.google.gson.reflect.TypeToken;
+<i>6</i>&nbsp;import com.praktikum.spapp.common.Utils;
+<i>7</i>&nbsp;import com.praktikum.spapp.dao.AuthenticationDao;
+<i>8</i>&nbsp;import com.praktikum.spapp.exception.ResponseException;
+<i>9</i>&nbsp;import com.praktikum.spapp.models.Session;
+<i>10</i>&nbsp;import com.praktikum.spapp.models.User;
+<i>11</i>&nbsp;import okhttp3.OkHttpClient;
+<i>12</i>&nbsp;import okhttp3.Request;
+<i>13</i>&nbsp;import okhttp3.RequestBody;
+<i>14</i>&nbsp;import okhttp3.Response;
+<i>15</i>&nbsp;
+<i>16</i>&nbsp;import java.io.IOException;
+<i>17</i>&nbsp;import java.util.HashMap;
+<i>18</i>&nbsp;import java.util.Map;
+<i>19</i>&nbsp;
+<b class="fc"><i>20</i>&nbsp;public class AuthenticationDaoImpl extends AbstractDaoImpl implements AuthenticationDao {</b>
+<i>21</i>&nbsp;
+<i>22</i>&nbsp;    /**
+<i>23</i>&nbsp;     * The logon method
+<i>24</i>&nbsp;     *
+<i>25</i>&nbsp;     * @param nameOrEmail
+<i>26</i>&nbsp;     * @param password
+<i>27</i>&nbsp;     * @return A session with session data
+<i>28</i>&nbsp;     * @throws ResponseException
+<i>29</i>&nbsp;     */
+<i>30</i>&nbsp;    public Session logon(String nameOrEmail, String password) throws ResponseException {
+<b class="fc"><i>31</i>&nbsp;        Session session = null;</b>
+<i>32</i>&nbsp;
+<i>33</i>&nbsp;        // create jsonString GSON by map
+<b class="fc"><i>34</i>&nbsp;        Map&lt;String, String&gt; map = new HashMap&lt;&gt;();</b>
+<i>35</i>&nbsp;        // user can enter username or email
+<b class="pc"><i>36</i>&nbsp;        if (Utils.isEmail(nameOrEmail)) {</b>
+<b class="nc"><i>37</i>&nbsp;            map.put(&quot;email&quot;, nameOrEmail);</b>
+<i>38</i>&nbsp;        } else {
+<b class="fc"><i>39</i>&nbsp;            map.put(&quot;username&quot;, nameOrEmail);</b>
+<i>40</i>&nbsp;        }
+<b class="fc"><i>41</i>&nbsp;        map.put(&quot;password&quot;, password);</b>
+<b class="fc"><i>42</i>&nbsp;        Gson gson = new GsonBuilder().create();</b>
+<b class="fc"><i>43</i>&nbsp;        String data = gson.toJson(map);</b>
+<i>44</i>&nbsp;
+<i>45</i>&nbsp;        // create request body
+<b class="fc"><i>46</i>&nbsp;        RequestBody requestBody = RequestBody.create(data, JSON);</b>
+<i>47</i>&nbsp;        // make request with data
+<b class="fc"><i>48</i>&nbsp;        Request request = new Request.Builder()</b>
+<b class="fc"><i>49</i>&nbsp;                .url(api + &quot;/api/auth/signin&quot;)</b>
+<b class="fc"><i>50</i>&nbsp;                .post(requestBody)</b>
+<b class="fc"><i>51</i>&nbsp;                .build();</b>
+<i>52</i>&nbsp;
+<i>53</i>&nbsp;        try {
+<b class="fc"><i>54</i>&nbsp;            Response response = new OkHttpClient().newCall(request).execute();</b>
+<i>55</i>&nbsp;            // have to create variable, because stream is closed or so
+<b class="fc"><i>56</i>&nbsp;            String responseString = response.body().string();</b>
+<b class="fc"><i>57</i>&nbsp;            responseCheck(responseString);</b>
+<b class="fc"><i>58</i>&nbsp;            session = new Gson().fromJson(responseString, Session.class);</b>
+<b class="fc"><i>59</i>&nbsp;            session.setCurrentUsername(nameOrEmail);</b>
+<b class="fc"><i>60</i>&nbsp;            return session;</b>
+<b class="nc"><i>61</i>&nbsp;        } catch (IOException e) {</b>
+<b class="nc"><i>62</i>&nbsp;            throw new ResponseException(e);</b>
+<i>63</i>&nbsp;        }
+<i>64</i>&nbsp;    }
+<i>65</i>&nbsp;
+<i>66</i>&nbsp;}
+<i>67</i>&nbsp;
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-07-20 14:53</div>
+</div>
+</body>
+</html>
